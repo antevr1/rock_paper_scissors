@@ -1,4 +1,5 @@
 
+Ovo je samo dio toga.
 
     function getComputerChoice(){
         let randomNumber = Math.random();
