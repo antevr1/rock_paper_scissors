@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamen škare papir</title>
+</head>
+<body>
+    <label for="unos">Choose rock, paper or scissors</label>
+    <input type="text" id="unos" name="unos">
+    <button type="submit" id="btn">Submit</button>
+    <p id="paragraf"></p>
+    <p id="you"></p>
+    <p id="computer"></p>
+</body>
+<script>
+    
+    let playerCount = 0;
+        let computerCount = 0;
+    document.getElementById('btn').onclick = function(){
+
+        function getComputerChoice(){
+        let randomNumber = Math.random();
+        
+        if (randomNumber <= (1/3)){
+            return 'rock';
+        }
+        else if (randomNumber > (1/3) && randomNumber <= (2/3)){
+            return 'paper';
+        }
+        else{
+            return 'scissors';
+        } 
+    };
+
+    let computerChoice = getComputerChoice();
+/*-------------------------------------------------------------------*//*-------------------------------------------------------------------*/
+        let playerChoice = document.getElementById("unos").value;
+        let smallPlayerChoice = playerChoice.toLowerCase();
+    
+    
+    if(smallPlayerChoice != 'rock' && smallPlayerChoice != 'scissors' && smallPlayerChoice != 'paper'){
+        console.log('Wrong choice!');
+    }
+
+    function chooseWinner(smallPlayerChoice,computerChoice){
+        if (playerChoice == 'rock' && computerChoice == 'paper'){
+            document.getElementById("paragraf").innerHTML = 'YOU LOSE - the computer chose paper.';
+            computerCount = computerCount+1;
+            document.getElementById("computer").innerHTML = computerCount;
+        }
+        else if (smallPlayerChoice == 'rock' && computerChoice == 'scissors'){
+            document.getElementById("paragraf").innerHTML= 'YOU WIN - the computer chose scissors.';
+            playerCount = playerCount+1;
+            document.getElementById("you").innerHTML= playerCount;
+        }
+        else if (smallPlayerChoice == 'rock' && computerChoice == 'rock'){
+            document.getElementById("paragraf").innerText= 'DRAW - the computer chose rock.';
+        }
+        if (playerCount >= 5){
+            document.getElementById("paragraf").innerHTML = 'YOU HAVE WON THIS GAME';
+            document.getElementById("computer").innerHTML = 0;
+            document.getElementById("you").innerHTML= 0;
+            computerCount = 0;
+            playerCount = 0;
+        }
+        else if (computerCount >= 5){
+            document.getElementById("paragraf").innerHTML = 'YOU HAVE LOST THIS GAME';
+            document.getElementById("computer").innerHTML = 0;
+            document.getElementById("you").innerHTML= 0;
+            playerCount = 0;
+            computerCount = 0;
+        }
+    }
+        chooseWinner(smallPlayerChoice,computerChoice);
+    }
+    
+    
+</script>
+</html>
